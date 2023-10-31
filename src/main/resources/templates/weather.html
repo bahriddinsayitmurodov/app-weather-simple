@@ -1,0 +1,173 @@
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="utf-8">
+    <title>Weather App Project JavaScript | CodingNepal</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<h1>Weather Forecast made by Bakhriddin</h1>
+<div class="container">
+
+  <form method="get">
+      <div class="weather-input">
+          <h3>Enter a City Name</h3>
+          <label>
+              <input class="city-input" type="text" placeholder="E.g., Tashkent" name="reg">
+          </label>
+          <button class="search-btn">Search</button>
+      </div>
+  </form>
+
+
+    <div class="weather-data">
+        <div class="current-weather">
+            <div class="details">
+                <h2 th:utext="${results.location().region}+${results.lastUpdated()}"></h2>
+                <h6 th:utext="'Temperature: '+${results.temperatureCel()} +'°C'">Temperature: __°C</h6>
+                <h6 th:text="'Wind: '+${results.windKph()}+'KM/S'">Wind: __ M/S</h6>
+                <h6 th:text="'Humidity: '+${results.humidity()}+'%'">Humidity: __%</h6>
+                <img th:src="${results.icon()}" alt="image" style="display: flex ; justify-content: space-between">
+            </div>
+        </div>
+        <div class="days-forecast">
+            <h2>1-Day Forecast</h2>
+            <ul class="weather-cards">
+                <li class="card">
+                    <h2 th:utext="${results.location().region}+${results.lastUpdated()}"></h2>
+                    <h6 th:utext="'Temperature: '+${results.temperatureCel()} +'°C'">Temperature: __°C</h6>
+                    <h6 th:text="'Wind: '+${results.windKph()}+'KM/S'">Wind: __ M/S</h6>
+                    <h6 th:text="'Humidity: '+${results.humidity()}+'%'">Humidity: __%</h6>
+                    <img th:src="${results.icon()}" alt="image" style="display: flex ; justify-content: space-between">
+                </li>
+            </ul>
+
+            //2-day
+            <ul class="weather-cards">
+                <li class="card">
+                    <h2 th:utext="${results.location().region}+${results.lastUpdated()}"></h2>
+                    <h6 th:utext="'Temperature: '+${results.temperatureCel()} +'°C'">Temperature: __°C</h6>
+                    <h6 th:text="'Wind: '+${results.windKph()}+'KM/S'">Wind: __ M/S</h6>
+                    <h6 th:text="'Humidity: '+${results.humidity()}+'%'">Humidity: __%</h6>
+                    <img th:src="${results.icon()}" alt="image" style="display: flex ; justify-content: space-between">
+                </li>
+            </ul>
+
+            //3-day
+            <ul class="weather-cards">
+                <li class="card">
+                    <h2 th:utext="${results.location().region}+${results.lastUpdated()}"></h2>
+                    <h6 th:utext="'Temperature: '+${results.temperatureCel()} +'°C'">Temperature: __°C</h6>
+                    <h6 th:text="'Wind: '+${results.windKph()}+'KM/S'">Wind: __ M/S</h6>
+                    <h6 th:text="'Humidity: '+${results.humidity()}+'%'">Humidity: __%</h6>
+                    <img th:src="${results.icon()}" alt="image" style="display: flex ; justify-content: space-between">
+                </li>
+            </ul>
+
+            //3-day
+            <ul class="weather-cards">
+                <li class="card">
+                    <h2 th:utext="${results.location().region}+${results.lastUpdated()}"></h2>
+                    <h6 th:utext="'Temperature: '+${results.temperatureCel()} +'°C'">Temperature: __°C</h6>
+                    <h6 th:text="'Wind: '+${results.windKph()}+'KM/S'">Wind: __ M/S</h6>
+                    <h6 th:text="'Humidity: '+${results.humidity()}+'%'">Humidity: __%</h6>
+                    <img th:src="${results.icon()}" alt="image" style="display: flex ; justify-content: space-between">
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+</div>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="utf-8">
+    <title>Weather App Project JavaScript | CodingNepal</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+<h1>Weather Forecast</h1>
+
+
+<div class="container">
+    <form method="get" action="/weather">
+        <div class="weather-input">
+            <h3>Enter a City Name</h3>
+            <label>
+                <input class="city-input" type="text" placeholder="E.g., Tashkent" name="reg">
+            </label>
+            <button class="search-btn">Search</button>
+        </div>
+    </form>
+
+    <div th:if="${results}">
+
+        <div class="weather-data">
+            <div class="current-weather">
+                <div class="details">
+                    <h2 th:utext="${results.location().region} + ' <br>Date: ' + ${results.lastUpdated()}"></h2>
+
+                    <h6 th:utext="'Temperature: '+${results.temperatureCel()} +'°C'">Temperature: __°C</h6>
+                    <h6 th:text="'Wind: '+${results.windKph()}+' M/S'">Wind: __ M/S</h6>
+                    <h6 th:text="'Humidity: '+${results.humidity()}+'%'">Humidity: __%</h6>
+                    <h6 th:text="'Pressure: '+${results.pressureMb()}+' mb'">Humidity: __%</h6>
+                </div>
+                <div style="display: flex ; justify-content: space-between">
+                    <img th:src="${results.icon()}" alt="image" style="width: 265px; height: 265px">
+                    <h6 th:text="${results.condition().text}" style="color: gold">Humidity: __%</h6>
+                </div>
+            </div>
+            <div class="days-forecast">
+                <h2>5-Day Forecast</h2>
+                <ul class="weather-cards">
+                    <li class="card">
+                        <h2 th:utext="${results.location().region}+${results.lastUpdated()}"></h2>
+                        <h6 th:utext="'Temperature: '+${results.temperatureCel()} +'°C'">Temperature: __°C</h6>
+                        <h6 th:text="'Wind: '+${results.windKph()}+'KM/S'">Wind: __ M/S</h6>
+                        <h6 th:text="'Humidity: '+${results.humidity()}+'%'">Humidity: __%</h6>
+                        <img th:src="${results.icon()}" alt="image" style="display: flex ; justify-content: space-between">
+                    </li>
+                    <li class="card">
+                        <h3>( ______ )</h3>
+                        <h6>Temp: __C</h6>
+                        <h6>Wind: __ M/S</h6>
+                        <h6>Humidity: __%</h6>
+                    </li>
+                    <li class="card">
+                        <h3>( ______ )</h3>
+                        <h6>Temp: __C</h6>
+                        <h6>Wind: __ M/S</h6>
+                        <h6>Humidity: __%</h6>
+                    </li>
+                    <li class="card">
+                        <h3>( ______ )</h3>
+                        <h6>Temp: __C</h6>
+                        <h6>Wind: __ M/S</h6>
+                        <h6>Humidity: __%</h6>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+</body>
+</html>
